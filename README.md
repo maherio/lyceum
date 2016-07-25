@@ -1,26 +1,31 @@
+# Lyceum
+A data processing project to produce learning paths for students given test scores and predefined paths.
+
+----
+
 == Setup ==
 
 Our mission is to provide the best learning experiences to students, personalized
 to their unique learning pathway. One aspect of that personalization is academic level:
-students should work on content that is challenging, but not out of reach. 
+students should work on content that is challenging, but not out of reach.
 
 When a student first enters our system, we use their existing standardized test scores
 as a way to bootstrap the correct level. If a student comes in below grade level, they
-can work on something simpler than their classmates, whereas if they are way above 
+can work on something simpler than their classmates, whereas if they are way above
 grade level, then they can work on more challenging material.
 
 In this exercise, you'll take students' standardized test scores, and use some heuristics
 to produce a draft learning pathway for the student.
 
 The sample files provided work with just the reading standards, although this same approach
-would be used for math, social studies, or alternate standard systems. If you're curious, 
+would be used for math, social studies, or alternate standard systems. If you're curious,
 you can read more details about the reading standards here: http://www.corestandards.org/ELA-Literacy/
 
 == Input Files ==
 
 There are two input files:
 
-1/ domain_order.csv -- The Common Core State Standards are grouped broadly into domains - 
+1/ domain_order.csv -- The Common Core State Standards are grouped broadly into domains -
 for example, Reading Literature (RL) is the study of fictional text, whereas
 Reading Informational Text (RI) is non-fiction. This file contains the recommended order
 in which a student should work through the domains.
