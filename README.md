@@ -1,6 +1,29 @@
 # Lyceum
 A data processing project to produce learning paths for students given test scores and predefined paths.
 
+# Instructions
+
+- Clone the repo.
+```
+git clone https://github.com/maherio/lyceum.git
+```
+- Navigate to the root directory of the repo.
+```
+cd lyceum
+```
+- Run the script, specifying at least the test scores and optionally the domain order (will default to the one provided).
+```
+php run.php lyceum:get_learning_paths <absolute path to test_scores.csv>
+php run.php lyceum:get_learning_paths <absolute path to test_scores.csv> <absolute path to domain_order.csv>
+```
+
+# Considerations
+Obviously this Entity/Factory solution is overkill for the problem, but to me the point was to create solid software so you can get an idea of how I like to code, and this paints a more accurate picture than a simple text processing function.
+
+If I were to spend more time on this, here are a couple of things I'd start improving:
+- I'd like to restructure the grades to be more dynamic. Grade levels currently have to be numeric or the letter K. I'm thinking a linked list, or maybe just a secondary numeric index, would help to generalize that functionality.
+- I'd add unit tests for the factories.
+
 ----
 
 == Setup ==
