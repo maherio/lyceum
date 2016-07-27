@@ -1,5 +1,11 @@
 # Lyceum
+[![Build Status](https://travis-ci.org/maherio/lyceum.svg?branch=master)](https://travis-ci.org/maherio/lyceum)
+
 A data processing project to produce learning paths for students given test scores and predefined paths.
+
+# System Requirements
+- PHP 7
+- composer
 
 # Instructions
 
