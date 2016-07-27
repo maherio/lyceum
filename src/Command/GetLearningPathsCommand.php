@@ -11,6 +11,9 @@
 
 namespace Maherio\Lyceum\Command;
 
+use Maherio\Lyceum\Service\Csv\CsvFileReaderInterface;
+use Maherio\Lyceum\Factory\LearningPathFactory;
+
 use Cilex\Command\Command as CilexCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -24,29 +27,40 @@ class GetLearningPathsCommand extends CilexCommand
 {
     protected $command = 'lyceum:get_learning_paths';
 
+    public function __construct(CsvFileReaderInterface $fileReader, LearningPathFactory $learningPathFactory) {
+        $this->fileReader = $fileReader;
+        $this->learningPathFactory = $learningPathFactory;
+
+        return parent::__construct();
+    }
+
     protected function configure()
     {
         $this
             ->setName($this->command)
             ->setDescription('Takes in students\' scores and outputs recommended learning paths')
-            ->addArgument('student_scores', InputArgument::REQUIRED, 'What are the student scores?')
-            ->addArgument('domain_order', InputArgument::OPTIONAL, 'What is the domain order?');
+            ->addArgument('student_scores', InputArgument::REQUIRED, 'Absolute path to a CSV file containing student test scores')
+            ->addArgument('domain_order', InputArgument::OPTIONAL, 'Absolute path to a CSV file containing the domain order to study. Optional');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $studentScores = $input->getArgument('student_scores');
-        $domainOrder = $input->getArgument('domain_order');
+        $studentScoresFilepath = $input->getArgument('student_scores');
+        $domainOrderFilepath = $input->getArgument('domain_order');
 
-        if(!$domainOrder) {
-            //get the default domain order
-            $domainOrder = 'asdf';
+        if(!$domainOrderFilepath) {
+            //use the default domain order
+            $domainOrderFilepath = __DIR__ . '/../../data/domain_order.csv';
         }
 
-        var_dump($studentScores, $domainOrder);
-        exit();
+        $domainOrder = $this->fileReader->read($domainOrderFilepath);
+        $studentScores = $this->fileReader->read($studentScoresFilepath);
 
-        $text = 'learning paths output';
-        $output->writeln($text);
+        $learningPaths = $this->learningPathFactory->bulkCreate($studentScores, $domainOrder);
+
+        foreach ($learningPaths as $learningPath) {
+            //should probably be encapsulated in a csv writer
+            $output->writeln(implode(',', $learningPath->toArray(5)));
+        }
     }
 }
