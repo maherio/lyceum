@@ -26,14 +26,14 @@ class GradeLevel {
      * @param  GradeLevel $gradeLevel The GradeLevel to compare against.
      * @return boolean                True if this Gradelevel is greater than (i.e. comes after) the one passed in.
      */
-    public function isGreaterThan(GradeLevel $gradeLevel) {
-        //hmm hardcoding for now, but this should prob be dynamic depending on the domain_order input
-        if($this->level == 'K') {
-            return false;
-        } else if($gradeLevel == 'K') {
+    public function isGreaterThanOrEqualTo(GradeLevel $gradeLevel) {
+        //hmm hardcoding 'K' for now, but this should be dynamic depending on the domain_order input
+        if($this->level == $gradeLevel || $gradeLevel == 'K') {
             return true;
+        } else if($this->level == 'K') {
+            return false;
         }
 
-        return $this->level > $gradeLevel;
+        return $this->level >= $gradeLevel;
     }
 }

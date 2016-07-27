@@ -27,14 +27,14 @@ class GradeLevelTest extends TestCase {
         $secondGradeLevel = new GradeLevel($secondLevel);
         $thirdGradeLevel = new GradeLevel($thirdLevel);
 
-        $this->assertTrue($secondGradeLevel->isGreaterThan($firstGradeLevel));
-        $this->assertTrue($thirdGradeLevel->isGreaterThan($firstGradeLevel));
-        $this->assertTrue($thirdGradeLevel->isGreaterThan($secondGradeLevel));
+        $this->assertTrue($secondGradeLevel->isGreaterThanOrEqualTo($firstGradeLevel));
+        $this->assertTrue($thirdGradeLevel->isGreaterThanOrEqualTo($firstGradeLevel));
+        $this->assertTrue($thirdGradeLevel->isGreaterThanOrEqualTo($secondGradeLevel));
 
-        $this->assertFalse($firstGradeLevel->isGreaterThan($secondGradeLevel));
-        $this->assertFalse($firstGradeLevel->isGreaterThan($thirdGradeLevel));
-        $this->assertFalse($secondGradeLevel->isGreaterThan($thirdGradeLevel));
+        $this->assertFalse($firstGradeLevel->isGreaterThanOrEqualTo($secondGradeLevel));
+        $this->assertFalse($firstGradeLevel->isGreaterThanOrEqualTo($thirdGradeLevel));
+        $this->assertFalse($secondGradeLevel->isGreaterThanOrEqualTo($thirdGradeLevel));
 
-        $this->assertFalse($firstGradeLevel->isGreaterThan($firstGradeLevel));
+        $this->assertTrue($firstGradeLevel->isGreaterThanOrEqualTo($firstGradeLevel));
     }
 }
