@@ -33,6 +33,7 @@ Obviously this Entity/Factory solution is overkill for the problem, but to me th
 If I were to spend more time on this, here are a couple of things I'd start improving:
 - I'd like to restructure the grades to be more dynamic. Grade levels currently have to be numeric or the letter K. I'm thinking a linked list, or maybe just a secondary numeric index, would help to generalize that functionality.
 - I'd add unit tests for the factories.
+- I'd add docker to provide a consistent environment across different machines/users.
 
 ----
 
