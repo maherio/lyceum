@@ -7,6 +7,9 @@ use Maherio\Lyceum\Entity\GradeLevel;
 use Maherio\Lyceum\Entity\UnitOfStudy;
 
 class UnitOfStudyTest extends TestCase {
+    protected $domain;
+    protected $gradeLevel;
+
     protected function setUp() {
         $this->domain = new Domain('test');
         $this->gradeLevel = new GradeLevel('1');
