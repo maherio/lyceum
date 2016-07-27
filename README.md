@@ -11,6 +11,10 @@ git clone https://github.com/maherio/lyceum.git
 ```
 cd lyceum
 ```
+- Install dependencies
+```
+composer install
+```
 - Run the script, specifying at least the test scores and optionally the domain order (will default to the one provided).
 ```
 php run.php lyceum:get_learning_paths <absolute path to test_scores.csv>
